@@ -2,7 +2,7 @@ import {
     ListID, MESSAGE_FOR_CLIENT, MESSAGE_FOR_SERVER,
     SERVER_CREATE_NEW_LIST, SERVER_DELETE_LIST, SERVER_UPDATE_LIST_NAME, SERVER_CREATE_ITEM,
     SERVER_DELETE_ITEM, SERVER_UPDATE_ITEM_CHECK, SERVER_UPDATE_ITEM_LABEL, ItemID,
-    PassportUser, TODOLISTS_NEW_STATE, ItemJSON
+    PassportUser, TODOLISTS_NEW_STATE, ItemJSON, SERVER_UPDATE_LIST_DATA, SERVER_UPDATE_ITEM_DATA
 } from "@data/protocol";
 import {Item, TodoList} from "@data/todoListTypes";
 import {List} from "immutable";
@@ -91,6 +91,8 @@ export class User {
                 return this.SERVER_DELETE_LIST(client, msg);
             case "SERVER_UPDATE_LIST_NAME":
                 return this.SERVER_UPDATE_LIST_NAME(client, msg);
+            case "SERVER_UPDATE_LIST_DATA":
+                return this.SERVER_UPDATE_LIST_DATA(client, msg);
             case "SERVER_CREATE_ITEM":
                 return this.SERVER_CREATE_ITEM(client, msg);
             case "SERVER_DELETE_ITEM":
@@ -99,6 +101,8 @@ export class User {
                 return this.SERVER_UPDATE_ITEM_CHECK(client, msg);
             case "SERVER_UPDATE_ITEM_LABEL":
                 return this.SERVER_UPDATE_ITEM_LABEL(client, msg);
+            case "SERVER_UPDATE_ITEM_DATA":
+                return this.SERVER_UPDATE_ITEM_DATA(client, msg);
             default:
                 console.error("UNKNOWN SERVER MESSAGE RECEIVED:\n", msg);
                 throw "UNKNOWN SERVER MESSAGE RECEIVED";
@@ -148,10 +152,19 @@ export class User {
     }
     private SERVER_CREATE_NEW_LIST(client: Client, msg: SERVER_CREATE_NEW_LIST) {
         this.saveState();
-        const tdl = new TodoList(msg.name, List<Item>(), getNextIdList(), 0);
+        const tdl = new TodoList(msg.name, List<Item>(), getNextIdList(), 0, {});
         this.todoLists = this.todoLists.push( tdl );
         client.registerMapping(msg.clientListId, tdl.getId());
         this.sendStateToClients();
+    }
+
+    private SERVER_UPDATE_LIST_DATA(client: Client, msg: SERVER_UPDATE_LIST_DATA) {
+        const tdl: TodoList = this.getList(msg.ListID);
+        if (tdl) {
+            this.saveState();
+            this.updateTodoList(tdl.getId(), tdl.setData(msg.data));
+            this.sendStateToClients();
+        }
     }
 
     private TODOLISTS_NEW_STATE(client: Client, msg: TODOLISTS_NEW_STATE) {
@@ -161,7 +174,7 @@ export class User {
             if (item) { // Update item
                 return item.setStateFromJSON( itemJSON );
             } else { // Create new one
-                const newItem = new Item(itemJSON.label, itemJSON.checked, Date.now(), getNextIdItem(), 0);
+                const newItem = new Item(itemJSON.label, itemJSON.checked, Date.now(), getNextIdItem(), 0, itemJSON.data);
                 client.registerMapping(itemJSON.id, newItem.getId());
                 return newItem;
             }
@@ -176,7 +189,7 @@ export class User {
             if (list) { // Update existing list
                 return list.update(listJSON.name, itemsList);
             } else { //
-                const newList = new TodoList(listJSON.name, List(itemsList), getNextIdList(), 0);
+                const newList = new TodoList(listJSON.name, List(itemsList), getNextIdList(), 0, listJSON.data);
                 // client.registerMapping(listJSON.id, newList.getId());
                 return newList;
             }
@@ -186,13 +199,6 @@ export class User {
         this.todoLists = List(lists);
         this.items = List(items);
         this.sendStateToClients();
-        /*
-        this.sendToClients(this.clients, {
-            type: "TODOLISTS_NEW_STATE",
-            lists: lists.map(L => L.toJSON()),
-            items: items.map(I => I.toJSON())
-        });
-        */
     }
 
     private SERVER_DELETE_LIST(client: Client, msg: SERVER_DELETE_LIST) {
@@ -212,11 +218,20 @@ export class User {
     private SERVER_CREATE_ITEM(client: Client, msg: SERVER_CREATE_ITEM) {
         const ListID: ListID = client.getId(msg.ListID);
         const tdl: TodoList = this.getList(ListID);
-        const item = new Item(msg.label, false, Date.now(), getNextIdItem(), 0);
+        const item = new Item(msg.label, false, Date.now(), getNextIdItem(), 0, {});
         const newTdl = tdl.push( item );
         client.registerMapping(msg.clientItemId, item.getId());
         this.updateTodoList(tdl, newTdl);
         this.sendStateToClients();
+    }
+
+    private SERVER_UPDATE_ITEM_DATA(client: Client, msg: SERVER_UPDATE_ITEM_DATA) {
+        const tdl: TodoList = this.getList(msg.ListID);
+        if (tdl && tdl.contains(msg.ItemID)) {
+            this.saveState();
+            this.updateTodoList(tdl.getId(), tdl.setItemData(msg.ItemID, msg.data));
+            this.sendStateToClients();
+        }
     }
 
     private SERVER_DELETE_ITEM(client: Client, msg: SERVER_DELETE_ITEM) {
