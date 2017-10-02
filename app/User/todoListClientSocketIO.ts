@@ -11,6 +11,10 @@ export class TodoListClientSocketIO extends Client {
                 user.removeClient(this);
             }
         });
+        socket.on("operations", (ops: MESSAGE_FOR_SERVER[]) => {
+            const user = this.getUser();
+            ops.forEach(op => user.apply(this, op) );
+        });
         socket.on("operation", (op: MESSAGE_FOR_SERVER) => {
             // console.log("operation", op);
             this.getUser().apply(this, op);

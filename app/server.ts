@@ -59,7 +59,7 @@ RegisterOAuth(app); // OAuth2
 const IdentifiedOrLogin = checkIsAuthentified(401, "/login.html");
 
 // Static files
-const angularClientPath = path.join(__dirname, "../clientAngular2/dist");
+const angularClientPath = path.join(__dirname, "../TodoListClientAngular2/dist");
 app.get("/login.html", (req, res) => {
     res.sendFile( path.join(__dirname, "../app/login.html") );
 });

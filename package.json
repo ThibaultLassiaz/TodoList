@@ -1,7 +1,7 @@
 {
   "name": "TodoListServer",
   "version": "1.0.0",
-  "description": "",
+  "description": "TodoList server",
   "main": "index.js",
   "_moduleAliases": {
     "@data": "appJS/data",
@@ -11,6 +11,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node ./appJS/server.js",
+    "inspect": "node --inspect ./appJS/server.js",
     "compile": "node ./node_modules/typescript/bin/tsc",
     "lint": "node ./node_modules/tslint/bin/tslint --config \"./tslint.json\" \"app/**/*.ts\"",
     "watch:lint": "node ./node_modules/chokidar-cli/index.js ./app/**/*.ts -c \"npm run lint\" --initial --verbose",
