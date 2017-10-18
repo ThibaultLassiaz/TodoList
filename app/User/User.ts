@@ -135,7 +135,7 @@ export class User {
             items: this.items.map( I => I.toJSON() ).toArray(),
             lists: this.todoLists.map( L => L.toJSON() ).toArray()
         };
-        clients.forEach( c => c.unregisterAllMappings() );
+        // clients.forEach( c => c.unregisterAllMappings() );
         this.sendToClients(clients, msg);
         return this;
     }
@@ -159,7 +159,7 @@ export class User {
     }
 
     private SERVER_UPDATE_LIST_DATA(client: Client, msg: SERVER_UPDATE_LIST_DATA) {
-        const tdl: TodoList = this.getList(msg.ListID);
+        const tdl: TodoList = this.getList( client.getId(msg.ListID) );
         if (tdl) {
             this.saveState();
             this.updateTodoList(tdl.getId(), tdl.setData(msg.data));
@@ -208,8 +208,7 @@ export class User {
     }
 
     private SERVER_UPDATE_LIST_NAME(client: Client, msg: SERVER_UPDATE_LIST_NAME) {
-        const ListID: ListID = client.getId(msg.ListID);
-        const tdl: TodoList = this.getList(ListID);
+        const tdl: TodoList = this.getList( client.getId(msg.ListID) );
         const newTdl = tdl.setName( msg.name );
         this.updateTodoList(tdl, newTdl);
         this.sendStateToClients();
@@ -226,10 +225,12 @@ export class User {
     }
 
     private SERVER_UPDATE_ITEM_DATA(client: Client, msg: SERVER_UPDATE_ITEM_DATA) {
-        const tdl: TodoList = this.getList(msg.ListID);
-        if (tdl && tdl.contains(msg.ItemID)) {
+        const ListID: ListID = client.getId(msg.ListID);
+        const ItemID: ItemID = client.getId(msg.ItemID);
+        const tdl: TodoList = this.getList(ListID);
+        if (tdl && tdl.contains(ItemID)) {
             this.saveState();
-            this.updateTodoList(tdl.getId(), tdl.setItemData(msg.ItemID, msg.data));
+            this.updateTodoList(tdl.getId(), tdl.setItemData(ItemID, msg.data));
             this.sendStateToClients();
         }
     }
