@@ -144,6 +144,15 @@ export class TodoList {
         return new TodoList(this.getName(), List<Item>(items), this.id, ++this.clock, this.getData());
     }
 
+    getItemData(idItem: ItemID): Object {
+        const item = this.items.find(item => item.hasId(idItem));
+        if (item) {
+            return Object.assign({}, item.data);
+        } else {
+            return null;
+        }
+    }
+
     setItemData(idItem: ItemID, data: Object): TodoList {
         const item = this.items.find(item => item.hasId(idItem));
         if (item) {

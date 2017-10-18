@@ -152,7 +152,7 @@ export class User {
     }
     private SERVER_CREATE_NEW_LIST(client: Client, msg: SERVER_CREATE_NEW_LIST) {
         this.saveState();
-        const tdl = new TodoList(msg.name, List<Item>(), getNextIdList(), 0, {});
+        const tdl = new TodoList(msg.name, List<Item>(), getNextIdList(), 0, msg.data);
         this.todoLists = this.todoLists.push( tdl );
         client.registerMapping(msg.clientListId, tdl.getId());
         this.sendStateToClients();
@@ -162,7 +162,7 @@ export class User {
         const tdl: TodoList = this.getList( client.getId(msg.ListID) );
         if (tdl) {
             this.saveState();
-            this.updateTodoList(tdl.getId(), tdl.setData(msg.data));
+            this.updateTodoList(tdl.getId(), tdl.setData( Object.assign({}, tdl.getData(), msg.data) ));
             this.sendStateToClients();
         }
     }
@@ -217,7 +217,7 @@ export class User {
     private SERVER_CREATE_ITEM(client: Client, msg: SERVER_CREATE_ITEM) {
         const ListID: ListID = client.getId(msg.ListID);
         const tdl: TodoList = this.getList(ListID);
-        const item = new Item(msg.label, false, Date.now(), getNextIdItem(), 0, {});
+        const item = new Item(msg.label, msg.checked, Date.now(), getNextIdItem(), 0, msg.data);
         const newTdl = tdl.push( item );
         client.registerMapping(msg.clientItemId, item.getId());
         this.updateTodoList(tdl, newTdl);
@@ -230,7 +230,7 @@ export class User {
         const tdl: TodoList = this.getList(ListID);
         if (tdl && tdl.contains(ItemID)) {
             this.saveState();
-            this.updateTodoList(tdl.getId(), tdl.setItemData(ItemID, msg.data));
+            this.updateTodoList(tdl.getId(), tdl.setItemData(ItemID, Object.assign(tdl.getItemData(ItemID), msg.data) ));
             this.sendStateToClients();
         }
     }
