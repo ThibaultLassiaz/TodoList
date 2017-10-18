@@ -147,7 +147,7 @@ export class TodoList {
     getItemData(idItem: ItemID): Object {
         const item = this.items.find(item => item.hasId(idItem));
         if (item) {
-            return Object.assign({}, item.data);
+            return Object.assign({}, item.getData());
         } else {
             return null;
         }
