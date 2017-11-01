@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Créer une nouvelle tâche</h1>
+
+<div mat-dialog-content>
+    <form (ngSubmit)="createItem(data.id, newItemLabel.value, newItemDesc.value, date, pined); newItemLabel.value=''; newItemDesc.value='';">
+      <mat-form-field>
+        <input matInput placeholder="Entrez le nom de votre tache ..." #newItemLabel>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Entrez la description de votre tache ..." #newItemDesc></textarea>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Choisissez une date..." [(ngModel)]="date" name ="maDate" ngDefaultControl>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker [(ngModel)]="date" name="maDate" ngDefaultControl></mat-datepicker>
+      </mat-form-field>
+
+      <p> Pined :
+      <mat-checkbox #PinedCheckBox
+                    id="PinedCheckBox"
+                    type="checkbox"
+                    [checked]="pined"
+                    (change)="onPinedCbChanged(PinedCheckBox.checked)" ></mat-checkbox>
+      </p>
+      <p class = "btnAdd">
+        <button type="submit" mat-raised-button (click)="dialogRef.close()"><i class="material-icons">done</i></button>
+      </p>
+    </form>
+  <div mat-dialog-actions>
+    <button class = "btnAdd" mat-raised-button (click)="onNoClick()" tabindex="-1"><i class="material-icons">clear</i></button>
+  </div>
+</div>

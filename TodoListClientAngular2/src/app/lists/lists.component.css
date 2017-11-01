@@ -1,0 +1,43 @@
+section.lists {
+  flex-flow: row;
+  flex-wrap: wrap;
+}
+
+app-todo-list {
+  width: 100%;
+  flex: 0 0 auto;
+  display: inline-flex;
+  box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+  margin: 1em;
+  word-wrap: break-word;
+}
+
+#addList {
+  width: 30%;
+  margin: 3em auto;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+section {
+  margin: auto;
+}
+
+#global {
+  overflow:hidden;
+}
+#gauche {
+  float:left;
+  width: 80%;
+}
+#droite {
+  overflow:auto;
+  margin: 1em;
+}
+
+div {
+  display: block;
+  font-family: Roboto,Helvetica Neue Light,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;
+}

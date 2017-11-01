@@ -1,0 +1,34 @@
+<!-- <p>There are {{getLists().length}} lists</p> -->
+
+<!--
+<p>getItemsUI: {{getItemsUI() | json}}</p>
+<p>getLists: {{getLists() | json}}</p>
+-->
+
+<!-- <div id = "addList">
+  <section>
+    <form (ngSubmit)="createList(newListName.value); newListName.value=''">
+      <label>Create a new list:</label>
+      <input type="text" #newListName/>
+    </form>
+  </section>
+</div> -->
+
+
+<div id = "addList">
+  <section>
+    <form (ngSubmit)="createList(newListName.value); newListName.value=''">
+      <mat-form-field>
+        <input matInput placeholder="Créer une nouvelle liste ..." #newListName>
+      </mat-form-field>
+    </form>
+  </section>
+</div>
+
+<div id = "global">
+  <div id = "gauche">
+    <section class="lists">
+      <app-todo-list *ngFor="let list of getLists()" [list]="list" [clock]="list.clock"></app-todo-list>
+    </section>
+  </div>
+</div>

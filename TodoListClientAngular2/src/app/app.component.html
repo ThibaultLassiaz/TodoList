@@ -1,0 +1,14 @@
+<header class="card-panel teal lighten-2" *ngIf="getUser()">
+  <h1>{{title}}</h1>
+  <section class="user">
+    <label>Salut {{getUserName()}} !</label>
+  <!--  <label>Tu t'es identifié via {{getUserProvider()}}</label> -->
+    <section class="connection">
+      <label *ngIf="getConnected() | async"> <i class="material-icons">done</i> Tu es connecté !</label>
+      <label *ngIf="!(getConnected() | async)" (click)="tryReconnectSocket()"> <i class="material-icons">clear</i> Tu es déconnecté :(</label>
+    </section>
+  </section>
+  <img class="photo" [src]="getUserPhoto()" />
+</header>
+
+<router-outlet></router-outlet>

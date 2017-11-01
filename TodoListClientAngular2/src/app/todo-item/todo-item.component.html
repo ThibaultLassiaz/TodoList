@@ -1,0 +1,18 @@
+<section>
+
+  <mat-checkbox #isChecked type="checkbox" [ngModel]="item.checked" (ngModelChange)="check(isChecked.checked)"></mat-checkbox>
+  <label *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">
+    Titre : {{item.label}}
+    <br/>
+    Desc : {{item.data.description}}
+    <br/>
+    Date : {{item.data.date | date:'dd MMM, yyyy' | json}}
+    <br/>
+    Pined : {{item.data.pined | json}}
+  </label>
+  <form *ngIf="isEditingLabel()" (submit)="setLabel(newLabel.value)">
+    <input #newLabel type="text" [value]="item.label"/>
+  </form>
+  <button (click)="delete()">Delete</button>
+</section>
+

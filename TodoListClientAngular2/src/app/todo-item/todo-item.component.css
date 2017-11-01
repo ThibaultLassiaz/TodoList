@@ -1,0 +1,11 @@
+section.toBeUpdated {
+  background-color: orangered;
+}
+
+form {
+  display: inline;
+}
+
+mat-checkbox {
+  padding: 1em;
+}

@@ -1,0 +1,49 @@
+
+
+  <mat-expansion-panel class="root" [style.backgroundColor]="getColor()">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+  <h3>
+    {{list.name}}
+  </h3>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+
+    <div class = "options">
+      <!-- <input type="color" [ngModel]="getColor()" (ngModelChange)="setColor($event)" /> -->
+      <button (click)="delete()" mat-raised-button>Supprimer cette liste</button>
+    </div>
+  <!-- <form (ngSubmit)="createItem(newItemLabel.value, newItemDesc.value, date, pined); newItemLabel.value=''; newItemDesc.value='';">
+    <label>Create a new item:</label>
+    <input type="text" #newItemLabel/>
+    <label>Entrez une description pour votre tache : </label>
+    <input type="text" #newItemDesc/>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Choisissez une date..." [(ngModel)]="date" name ="maDate" ngDefaultControl>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker [(ngModel)]="date" name="maDate" ngDefaultControl></mat-datepicker>
+    </mat-form-field>
+
+    <mat-checkbox #PinedCheckBox
+                  id="PinedCheckBox"
+                  type="checkbox"
+                  [checked]="pined"
+                  (change)="onPinedCbChanged(PinedCheckBox.checked)" ></mat-checkbox>
+
+    <button type="submit" mat-raised-button><i class="material-icons">send</i></button>
+  </form>
+ -->
+
+  <section class="items">
+    <app-todo-item *ngFor="let item of list.items"
+                   [clock]="item.clock"
+                   [item]="item"
+                   [listId]="list.id">
+    </app-todo-item>
+  </section>
+
+  <app-task-modal [listId]="this.list.id">
+  </app-task-modal>
+
+  </mat-expansion-panel>
