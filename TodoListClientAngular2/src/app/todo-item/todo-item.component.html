@@ -1,13 +1,19 @@
 <mat-list-item>
   <mat-checkbox #isChecked type="checkbox" [ngModel]="item.checked" (ngModelChange)="check(isChecked.checked)"></mat-checkbox>
   <label *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">
-    <span>Titre : {{item.label}}</span>
-    <span>Desc : {{item.data.description}}</span>
-    <span>Date : {{item.data.date | date:'dd MMM, yyyy' | json}}</span>
-    <span>Pined : {{item.data.pined | json}}</span>
+    <span class = "title">{{item.label}}</span>
+    <br/>
+    <span class = "desc">{{item.data.description}}</span>
+    <br/>
+    <span class = "date">{{item.data.date | date:'dd MMM, yyyy'}}</span>
+    <span class = "pined"> Pined : {{item.data.pined | json}}</span>
   </label>
   <form *ngIf="isEditingLabel()" (submit)="setLabel(newLabel.value)">
     <input #newLabel type="text" [value]="item.label"/>
   </form>
-  <button (click)="delete()">Delete</button>
+  <div style="float: right; display: inline-block">
+  <button mat-raised-button (click)="delete()"><i class="material-icons">create</i> Modifier cette tâche</button>
+  <button mat-raised-button><i class="material-icons">colorize</i> Epingler cette tâche</button>
+  <button mat-raised-button><i class="material-icons">delete</i> Supprimer cette tâche</button>
+  </div>
 </mat-list-item>

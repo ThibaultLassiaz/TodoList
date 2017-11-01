@@ -41,7 +41,7 @@ export class TaskModalComponent implements OnInit {
 export class TaskModalComponentForm {
 
   @Input() date: Date;
-  public pined:boolean;
+  public pined:boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<TaskModalComponentForm>,
