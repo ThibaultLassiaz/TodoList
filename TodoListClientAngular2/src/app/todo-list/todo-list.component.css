@@ -37,3 +37,15 @@ h3:before {
 section {
   margin: 1em !important;
 }
+
+.items {
+  margin-top: 50px;
+}
+
+mat-expansion-panel-header {
+  border-bottom: 1px solid grey;
+}
+
+.btnDel {
+  margin-top: 10px;
+}

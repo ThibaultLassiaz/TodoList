@@ -3,6 +3,7 @@
   <mat-expansion-panel class="root" [style.backgroundColor]="getColor()">
     <mat-expansion-panel-header>
       <mat-panel-title>
+        <i class="material-icons" style="margin-top: 35px;">today</i>
   <h3>
     {{list.name}}
   </h3>
@@ -12,7 +13,7 @@
 
     <div class = "options">
       <!-- <input type="color" [ngModel]="getColor()" (ngModelChange)="setColor($event)" /> -->
-      <button (click)="delete()" mat-raised-button>Supprimer cette liste</button>
+      <button class = "btnDel" (click)="delete()" mat-raised-button><i class="material-icons">delete</i> Supprimer cette liste</button>
     </div>
   <!-- <form (ngSubmit)="createItem(newItemLabel.value, newItemDesc.value, date, pined); newItemLabel.value=''; newItemDesc.value='';">
     <label>Create a new item:</label>
@@ -35,13 +36,13 @@
   </form>
  -->
 
-  <section class="items">
+  <mat-list class="items">
     <app-todo-item *ngFor="let item of list.items"
                    [clock]="item.clock"
                    [item]="item"
                    [listId]="list.id">
     </app-todo-item>
-  </section>
+  </mat-list>
 
   <app-task-modal [listId]="this.list.id">
   </app-task-modal>
