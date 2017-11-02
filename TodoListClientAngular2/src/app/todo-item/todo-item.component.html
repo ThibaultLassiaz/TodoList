@@ -9,11 +9,13 @@
     <span class = "pined"> Pined : {{item.data.pined | json}}</span>
   </label>
   <form *ngIf="isEditingLabel()" (submit)="setLabel(newLabel.value)">
-    <input #newLabel type="text" [value]="item.label"/>
+    <mat-form-field>
+    <input #newLabel type="text" matInput placeholder="Entrez le nom de votre tache ..." [value]="item.label"/>
+    </mat-form-field>
   </form>
   <div style="float: right; display: inline-block">
-  <button mat-raised-button (click)="delete()"><i class="material-icons">create</i> Modifier cette tâche</button>
+  <button mat-raised-button><i class="material-icons">create</i> Modifier cette tâche</button>
   <button mat-raised-button><i class="material-icons">colorize</i> Epingler cette tâche</button>
-  <button mat-raised-button><i class="material-icons">delete</i> Supprimer cette tâche</button>
+  <button mat-raised-button (click)="delete()"><i class="material-icons">delete</i> Supprimer cette tâche</button>
   </div>
 </mat-list-item>
