@@ -51,6 +51,7 @@ import {
 } from '@angular/material';
 
 import { TaskModalComponent, TaskModalComponentForm } from './task-modal/task-modal.component';
+import { TaskModalModificationComponent } from './task-modal-modification/task-modal-modification.component';
 
 const appRoutes: Routes = [
   {
@@ -107,7 +108,8 @@ export class PlunkerMaterialModule {}
     TodoItemComponent,
     ListsComponent,
     TaskModalComponent,
-    TaskModalComponentForm
+    TaskModalComponentForm,
+    TaskModalModificationComponent
   ],
   imports: [
     BrowserModule,
