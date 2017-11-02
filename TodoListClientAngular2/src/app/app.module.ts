@@ -51,7 +51,7 @@ import {
 } from '@angular/material';
 
 import { TaskModalComponent, TaskModalComponentForm } from './task-modal/task-modal.component';
-import { TaskModalModificationComponent } from './task-modal-modification/task-modal-modification.component';
+import { TaskModalModificationComponent, TaskModalModificationComponentForm } from './task-modal-modification/task-modal-modification.component';
 
 const appRoutes: Routes = [
   {
@@ -109,7 +109,8 @@ export class PlunkerMaterialModule {}
     ListsComponent,
     TaskModalComponent,
     TaskModalComponentForm,
-    TaskModalModificationComponent
+    TaskModalModificationComponent,
+    TaskModalModificationComponentForm
   ],
   imports: [
     BrowserModule,
@@ -125,7 +126,7 @@ export class PlunkerMaterialModule {}
     RouterModule.forRoot(appRoutes, {useHash: true} )
   ],
   providers: [TodoListService],
-  bootstrap: [AppComponent, TaskModalComponent, TaskModalComponentForm]
+  bootstrap: [AppComponent, TaskModalComponent, TaskModalComponentForm, TaskModalModificationComponent, TaskModalModificationComponentForm]
 })
 export class AppModule {
   constructor(dateAdapter: DateAdapter<NativeDateAdapter>) {

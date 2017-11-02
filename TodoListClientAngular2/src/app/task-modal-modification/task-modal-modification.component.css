@@ -1,0 +1,22 @@
+p {
+  font-family: Roboto,Helvetica Neue Light,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+h1, .btnAdd {
+  text-align: center;
+}
+
+.btnAdd {
+  width: 50%;
+  float: left;
+}
+
+
+.mat-checkbox-background {
+  background-color: #3f51b5 !important;
+}
+
