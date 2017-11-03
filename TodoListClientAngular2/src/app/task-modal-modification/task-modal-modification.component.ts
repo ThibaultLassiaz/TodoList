@@ -11,13 +11,16 @@ import {ListID, ItemJSON, TodoListService} from "../todo-list.service";
 export class TaskModalModificationComponent implements OnInit {
 
   @Input() listId: ListID;
+  @Input() itemId: ItemJSON;
+
   constructor(public dialog: MatDialog) {}
 
   // To open the modal window
   openDialog(): void {
     let dialogRef = this.dialog.open(TaskModalModificationComponentForm, {
       width: '450px', data: {
-        id : this.listId
+        id : this.listId,
+        itemId : this.itemId
       }
     });
 
@@ -57,17 +60,13 @@ export class TaskModalModificationComponentForm {
     this.pined = value;
   }
 
-  createItem(ListId : ListID, label: string, description : string, date : Date, checkbox : boolean) {
+  updateItem(ListId : ListID, ItemId : string, label: string, description : string, date : Date, checkbox : boolean) {
     console.log(checkbox);
-    const id = this.todoListService.SERVER_CREATE_ITEM(ListId, label, false, {
-      someData: "someValue",
-      someNumber: 42,
-      someArray: ["riri", "fifi", "loulou"],
-      itemColor: "#FFFFFF",
+    const id = this.todoListService.SERVER_UPDATE_ITEM_LABEL(ListId, ItemId, label);
+    const idbis = this.todoListService.SERVER_UPDATE_ITEM_DATA(ListId, ItemId, {
       description : description,
       date : date,
       pined : checkbox,
-      // Add other data here...
     });
   }
 }

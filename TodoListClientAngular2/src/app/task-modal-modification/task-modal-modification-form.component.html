@@ -1,7 +1,7 @@
-<h1 mat-dialog-title>Créer une nouvelle tâche</h1>
+<h1 mat-dialog-title>Modifier une tâche</h1>
 
 <div mat-dialog-content>
-  <form (ngSubmit)="createItem(data.id, newItemLabel.value, newItemDesc.value, date, pined); newItemLabel.value=''; newItemDesc.value='';">
+  <form (ngSubmit)="updateItem(data.id, data.itemId, newItemLabel.value, newItemDesc.value, date, pined); newItemLabel.value=''; newItemDesc.value='';">
     <mat-form-field>
       <input matInput placeholder="Entrez le nom de votre tache ..." #newItemLabel>
     </mat-form-field>
