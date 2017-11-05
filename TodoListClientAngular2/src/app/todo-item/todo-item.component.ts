@@ -20,6 +20,13 @@ export class TodoItemComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
   }
 
+  setStyle() {
+    let styles = {
+      'width' : this.item.checked ? '69.5%' : '56.1%'
+    }
+    return styles;
+  }
+
   togglePined() {
     this.item.data.pined = !this.item.data.pined;
    this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id, this.item.data);

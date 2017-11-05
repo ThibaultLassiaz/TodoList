@@ -37,9 +37,8 @@
     <button type="submit" mat-raised-button><i class="material-icons">send</i></button>
   </form>
  -->
-    <app-sub-list *ngFor="let subList of subLists" [items]="getSortedItemsTyped(subList.type)" [listId]="this.list.id"></app-sub-list>
+    <app-sub-list *ngFor="let subList of subLists" [items]="getSortedItemsTyped(subList.type)" [listId]="this.list.id" [typeList]="subList.type"></app-sub-list>
 
-  <app-task-modal [listId]="this.list.id">
-  </app-task-modal>
+  <app-task-modal [listId]="this.list.id"></app-task-modal>
 
   </mat-expansion-panel>

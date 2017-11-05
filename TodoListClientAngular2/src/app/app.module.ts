@@ -114,6 +114,9 @@ export class PlunkerMaterialModule {}
     TaskModalModificationComponentForm,
     SubListComponent
   ],
+  entryComponents: [
+    TaskModalComponent, TaskModalComponentForm, TaskModalModificationComponent, TaskModalModificationComponentForm
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -122,13 +125,11 @@ export class PlunkerMaterialModule {}
     PlunkerMaterialModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
-    MatButtonModule, MatCheckboxModule, MatInputModule, MatDatepickerModule, MatNativeDateModule,
-    BrowserModule, HttpModule, FormsModule,
+    MatButtonModule, MatCheckboxModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, HttpModule, FormsModule,
     RouterModule.forRoot(appRoutes, {useHash: true} )
   ],
   providers: [TodoListService],
-  bootstrap: [AppComponent, TaskModalComponent, TaskModalComponentForm, TaskModalModificationComponent, TaskModalModificationComponentForm]
+  bootstrap: [AppComponent]
 })
 export class AppModule {
   constructor(dateAdapter: DateAdapter<NativeDateAdapter>) {
