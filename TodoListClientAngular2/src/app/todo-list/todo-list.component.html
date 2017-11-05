@@ -13,6 +13,8 @@
 
     <div class = "options">
       <!-- <input type="color" [ngModel]="getColor()" (ngModelChange)="setColor($event)" /> -->
+      <button class = "btnDel" (click)="setSortLabel()" mat-raised-button><i class="material-icons">replay</i> Trier A-Z</button>
+      <button class = "btnDel" (click)="setSortDate()" mat-raised-button><i class="material-icons">replay</i> Trier par date</button>
       <button class = "btnDel" (click)="delete()" mat-raised-button><i class="material-icons">delete</i> Supprimer cette liste</button>
     </div>
   <!-- <form (ngSubmit)="createItem(newItemLabel.value, newItemDesc.value, date, pined); newItemLabel.value=''; newItemDesc.value='';">
@@ -37,7 +39,7 @@
  -->
 
   <mat-list class="items">
-    <app-todo-item *ngFor="let item of list.items"
+    <app-todo-item *ngFor="let item of getItemsSort()"
                    [clock]="item.clock"
                    [item]="item"
                    [listId]="list.id">

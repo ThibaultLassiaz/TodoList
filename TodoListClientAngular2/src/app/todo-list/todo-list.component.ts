@@ -1,6 +1,8 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {TodoListWithItems, TodoListService} from "../todo-list.service";
+import {ItemJSON, TypeSort} from "../../data/protocol";
 
+type functionSortItem = (item1: ItemJSON, item2: ItemJSON) => number;
 
 @Component({
   selector: 'app-todo-list',
@@ -11,24 +13,51 @@ import {TodoListWithItems, TodoListService} from "../todo-list.service";
 export class TodoListComponent implements OnInit {
   @Input() list: TodoListWithItems;
   @Input() clock: number;
+  TypeSort: TypeSort;
 
-  constructor(private todoListService: TodoListService) { }
+  functionSort: functionSortItem;
 
-  ngOnInit() {
+
+
+  setSortLabel(): void {
+    this.TypeSort = TypeSort.TriLabel;
   }
 
-  createItem(label: string, description : string, date : Date, checkbox : boolean) {
-    console.log(checkbox);
-    const id = this.todoListService.SERVER_CREATE_ITEM(this.list.id, label, false, {
-      someData: "someValue",
-      someNumber: 42,
-      someArray: ["riri", "fifi", "loulou"],
-      itemColor: "#FFFFFF",
-      description : description,
-      date : date,
-      pined : checkbox,
-      // Add other data here...
-    });
+  setSortDate(): void {
+    this.TypeSort = TypeSort.TriDate;
+  }
+
+
+  functionSortAlphabetical: functionSortItem = (itemA: ItemJSON, itemB: ItemJSON) => {
+    const resAscendant = itemA.label > itemB.label ? 1 : -1;
+    return resAscendant;
+  }
+
+
+  functionSortDate: functionSortItem = (itemA: ItemJSON, itemB: ItemJSON) => {
+    const resAscendant = new Date(itemA.data.date).getTime() - new Date(itemB.data.date).getTime();
+    return resAscendant;
+  }
+
+
+  getItemsSort(): ItemJSON[] {
+    let functionSort: functionSortItem;
+    switch (this.TypeSort) {
+      case TypeSort.TriLabel :
+        functionSort = this.functionSortAlphabetical;
+        break;
+      case TypeSort.TriDate :
+        functionSort = this.functionSortDate;
+        break;
+    }
+    return this.list.items.sort(functionSort);
+  }
+
+  constructor(private todoListService: TodoListService) {
+    this.functionSort = this.functionSortAlphabetical;
+  }
+
+  ngOnInit() {
   }
 
   delete() {

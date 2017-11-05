@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {ListID, ItemJSON, TodoListService} from "../todo-list.service";
-
+import {ListID, ItemJSON,  TodoListService} from "../todo-list.service";
+import {dataForItem} from "../../data/protocol";
 
 @Component({
   selector: 'app-task-modal',
@@ -57,18 +57,14 @@ export class TaskModalComponentForm {
     this.pined = value;
   }
 
-  createItem(ListId : ListID, label: string, description : string, date : Date, checkbox : boolean) {
+  createItem(ListId : ListID, label: string, description : string, date : string, checkbox : boolean) {
     console.log(checkbox);
-    const id = this.todoListService.SERVER_CREATE_ITEM(ListId, label, false, {
-      someData: "someValue",
-      someNumber: 42,
-      someArray: ["riri", "fifi", "loulou"],
-      itemColor: "#FFFFFF",
-      description : description,
+    const itemEdit: dataForItem = {
+      description: description,
       date : date,
       pined : checkbox,
-      // Add other data here...
-    });
+    };
+    const id = this.todoListService.SERVER_CREATE_ITEM(ListId, label, false, itemEdit);
   }
 
 

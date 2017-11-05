@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {ListID, ItemJSON, TodoListService} from "../todo-list.service";
+import {dataForItem} from "../../data/protocol";
 
 
 @Component({
@@ -60,13 +61,14 @@ export class TaskModalModificationComponentForm {
     this.pined = value;
   }
 
-  updateItem(ListId : ListID, ItemId : string, label: string, description : string, date : Date, checkbox : boolean) {
+  updateItem(ListId : ListID, ItemId : string, label: string, description : string, date : string, checkbox : boolean) {
     console.log(checkbox);
-    const id = this.todoListService.SERVER_UPDATE_ITEM_LABEL(ListId, ItemId, label);
-    const idbis = this.todoListService.SERVER_UPDATE_ITEM_DATA(ListId, ItemId, {
+    const itemEdit: dataForItem = {
       description : description,
       date : date,
       pined : checkbox,
-    });
+    };
+    const id = this.todoListService.SERVER_UPDATE_ITEM_LABEL(ListId, ItemId, label);
+    const idbis = this.todoListService.SERVER_UPDATE_ITEM_DATA(ListId, ItemId, itemEdit);
   }
 }

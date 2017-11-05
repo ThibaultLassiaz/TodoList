@@ -4,7 +4,7 @@ import {
   ItemID, ListID,
   MESSAGE_FOR_SERVER, SERVER_UPDATE_ITEM_CHECK, SERVER_UPDATE_ITEM_LABEL, SERVER_UPDATE_ITEM_DATA,
   MESSAGE_FOR_CLIENT, TODOLISTS_NEW_STATE,
-  TodoListJSON, ItemJSON, TodoListWithItems, SERVER_DELETE_ITEM, SERVER_DELETE_LIST, SERVER_UPDATE_LIST_DATA
+  TodoListJSON, ItemJSON, TodoListWithItems, SERVER_DELETE_ITEM, SERVER_DELETE_LIST, SERVER_UPDATE_LIST_DATA,  dataForItem
 } from "../data/protocol";
 export {
   ItemID, ListID,
@@ -145,7 +145,8 @@ export class TodoListService {
   /*****************************************************************************************************************************************
    * Operations on items *******************************************************************************************************************
    ****************************************************************************************************************************************/
-  SERVER_CREATE_ITEM(ListID: ListID, label: string, checked: boolean = false, data: Object = {}): string {
+  SERVER_CREATE_ITEM(ListID: ListID, label: string, checked: boolean = false, data: dataForItem) :
+  string {
     const id = this.genId.next().value;
     console.log(data);
     this.emit({
@@ -179,7 +180,7 @@ export class TodoListService {
     this.itemsJSON = this.itemsJSON.filter( I => I.id !== ItemID );
   }
 
-  SERVER_UPDATE_ITEM_DATA(ListID: ListID, ItemID: ItemID, data: Object) {
+  SERVER_UPDATE_ITEM_DATA(ListID: ListID, ItemID: ItemID,  data: dataForItem) {
     const op: SERVER_UPDATE_ITEM_DATA = {
       type: "SERVER_UPDATE_ITEM_DATA",
       ListID: ListID,

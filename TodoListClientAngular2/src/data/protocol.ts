@@ -43,7 +43,14 @@ export type ItemJSON = {
   date: number,
   id: ItemID,
   clock: number,
-  data: Object // Possible extensions
+  data: dataForItem // Possible extensions
+};
+
+
+export type dataForItem = {
+  description: string,
+  date: string,
+  pined : boolean,
 };
 
 export type TodoListJSON = {
@@ -61,3 +68,8 @@ export type TodoListWithItems = {
   clock: number,
   data: Object // Possible extensions
 };
+
+export enum TypeSort {
+  TriLabel =1 ,
+  TriDate = 2
+}
