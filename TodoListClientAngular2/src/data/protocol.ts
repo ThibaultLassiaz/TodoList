@@ -73,3 +73,9 @@ export enum TypeSort {
   TriLabel =1 ,
   TriDate = 2
 }
+
+export enum SubLisType {
+  ListPinned = 1,
+  ListTodo = 2,
+  ListDone = 3
+}

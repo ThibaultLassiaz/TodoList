@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {TodoListWithItems, TodoListService} from "../todo-list.service";
-import {ItemJSON, TypeSort} from "../../data/protocol";
+import {ItemJSON, TypeSort, SubLisType} from "../../data/protocol";
 
 type functionSortItem = (item1: ItemJSON, item2: ItemJSON) => number;
 
@@ -17,7 +17,29 @@ export class TodoListComponent implements OnInit {
 
   functionSort: functionSortItem;
 
+  subLists = [
+    {type: SubLisType.ListPinned},
+    {type: SubLisType.ListTodo},
+    {type: SubLisType.ListDone},
+]
 
+  getPinnedItems() {
+    return this.list.items.filter((item) => {
+      return item.data.pined && !item.checked;
+    });
+  }
+
+  getTodoItems(){
+    return this.list.items.filter((item) => {
+      return !item.checked && !item.data.pined;
+    });
+  }
+
+  getDoneItems(){
+    return this.list.items.filter((item) => {
+      return item.checked;
+    });
+  }
 
   setSortLabel(): void {
     this.TypeSort = TypeSort.TriLabel;
@@ -40,7 +62,23 @@ export class TodoListComponent implements OnInit {
   }
 
 
-  getItemsSort(): ItemJSON[] {
+  getSortedItemsTyped(type: SubLisType) : ItemJSON[] {
+    let itemsFiltered: ItemJSON[];
+    switch(type) {
+      case SubLisType.ListPinned :
+        itemsFiltered = this.getPinnedItems();
+        break;
+      case SubLisType.ListTodo :
+        itemsFiltered = this.getTodoItems();
+        break;
+      case SubLisType.ListDone :
+        itemsFiltered = this.getDoneItems();
+        break;
+    }
+    return this.getItemsSort(itemsFiltered); // Renvoi ces item triés
+  }
+
+  getItemsSort(items:ItemJSON[] ): ItemJSON[] {
     let functionSort: functionSortItem;
     switch (this.TypeSort) {
       case TypeSort.TriLabel :
@@ -50,7 +88,7 @@ export class TodoListComponent implements OnInit {
         functionSort = this.functionSortDate;
         break;
     }
-    return this.list.items.sort(functionSort);
+    return items.sort(functionSort);
   }
 
   constructor(private todoListService: TodoListService) {

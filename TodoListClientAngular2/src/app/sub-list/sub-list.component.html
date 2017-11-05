@@ -1,0 +1,3 @@
+<mat-list class="items" *ngIf="items.length > 0">
+<app-todo-item *ngFor="let item of items" [clock]="item.clock" [item]="item" [listId]="listId"></app-todo-item>
+</mat-list>

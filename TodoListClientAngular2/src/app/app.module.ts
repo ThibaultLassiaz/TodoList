@@ -52,6 +52,7 @@ import {
 
 import { TaskModalComponent, TaskModalComponentForm } from './task-modal/task-modal.component';
 import { TaskModalModificationComponent, TaskModalModificationComponentForm } from './task-modal-modification/task-modal-modification.component';
+import { SubListComponent } from './sub-list/sub-list.component';
 
 const appRoutes: Routes = [
   {
@@ -110,7 +111,8 @@ export class PlunkerMaterialModule {}
     TaskModalComponent,
     TaskModalComponentForm,
     TaskModalModificationComponent,
-    TaskModalModificationComponentForm
+    TaskModalModificationComponentForm,
+    SubListComponent
   ],
   imports: [
     BrowserModule,

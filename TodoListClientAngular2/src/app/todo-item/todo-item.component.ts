@@ -20,6 +20,15 @@ export class TodoItemComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
   }
 
+  togglePined() {
+    this.item.data.pined = !this.item.data.pined;
+   this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id, this.item.data);
+  }
+
+  textPined(){
+    return this.item.data.pined ? "Désépingler" : "Epingler";
+  }
+
   setLabel(label: string) {
     if (label === "") {
       this.delete();

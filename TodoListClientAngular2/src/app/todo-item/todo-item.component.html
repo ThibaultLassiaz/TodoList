@@ -14,7 +14,8 @@
     </mat-form-field>
   </form>
   <div style="float: right; display: inline-block">
-    <button mat-raised-button><i class="material-icons">colorize</i> Epingler cette tâche</button>
+
+    <button mat-raised-button (click)="togglePined()" *ngIf="!item.checked"><i class="material-icons">colorize</i> {{textPined()}}</button>
     <app-task-modal-modification [listId]="this.listId" [itemId]="this.item.id"></app-task-modal-modification>
     <button mat-raised-button (click)="delete()"><i class="material-icons">delete</i> Supprimer cette tâche</button>
   </div>

@@ -39,10 +39,6 @@ section {
   margin: 1em !important;
 }
 
-.items {
-  margin-top: 70px;
-}
-
 mat-expansion-panel-header {
   border-bottom: 1px solid grey;
 }
