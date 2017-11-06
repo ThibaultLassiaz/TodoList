@@ -15,11 +15,11 @@ export class SubListComponent implements OnInit {
   getTitle() {
   switch (this.typeList) {
     case SubLisType.ListDone :
-      return "Done";
+      return "Fait";
     case SubLisType.ListTodo :
-      return "Todo";
+      return "A faire";
     case SubLisType.ListPinned :
-      return "Pined";
+      return "Epinglé";
   }
 }
 

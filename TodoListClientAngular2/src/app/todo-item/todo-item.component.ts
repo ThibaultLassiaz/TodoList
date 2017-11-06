@@ -22,10 +22,25 @@ export class TodoItemComponent implements OnInit, OnChanges {
 
   setStyle() {
     let styles = {
-      'width' : this.item.checked ? '69.5%' : '56.1%'
+      'width' : this.item.checked ? '69.5%' : '55.1%'
     }
     return styles;
   }
+
+
+  setStyleDiv() {
+    let styles = {
+      'min-width' : this.item.checked ? '32%' : '45%'
+    }
+    return styles;
+  }
+
+  setStyleBtn() {
+    let styles = {
+  'width' : this.item.checked ? '50%' : '33%'
+}
+  return styles;
+}
 
   togglePined() {
     this.item.data.pined = !this.item.data.pined;

@@ -13,6 +13,7 @@ export class TaskModalModificationComponent implements OnInit {
 
   @Input() listId: ListID;
   @Input() itemId: ItemJSON;
+  @Input() item : ItemJSON;
 
   constructor(public dialog: MatDialog) {}
 
@@ -21,7 +22,8 @@ export class TaskModalModificationComponent implements OnInit {
     let dialogRef = this.dialog.open(TaskModalModificationComponentForm, {
       width: '450px', data: {
         id : this.listId,
-        itemId : this.itemId
+        itemId : this.itemId,
+        item : this.item
       }
     });
 
@@ -30,6 +32,13 @@ export class TaskModalModificationComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
     });
+  }
+
+  setStyleBtn() {
+    let styles = {
+      'width' : this.item.checked ? '48%' : '33%'
+    }
+    return styles;
   }
 
   ngOnInit() {
