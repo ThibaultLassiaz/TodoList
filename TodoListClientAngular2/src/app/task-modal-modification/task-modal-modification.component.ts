@@ -28,7 +28,7 @@ export class TaskModalModificationComponent implements OnInit {
     });
 
     console.log(this.listId);
-
+    console.log(this.item.label);
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
     });

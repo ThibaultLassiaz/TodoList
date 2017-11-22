@@ -3,7 +3,7 @@
 <div mat-dialog-content>
   <form (ngSubmit)="updateItem(data.id, data.itemId, newItemLabel.value, newItemDesc.value, date.toString(), pined); newItemLabel.value=''; newItemDesc.value='';">
     <mat-form-field>
-      <input matInput placeholder="Entrez le nom de votre tache ..." #newItemLabel>
+      <input matInput [value]="data.item.label" placeholder="Entrez le nom de votre tache ..." #newItemLabel>
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <textarea matInput placeholder="Entrez la description de votre tache ..." #newItemDesc></textarea>
