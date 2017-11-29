@@ -25,10 +25,15 @@
   </section>
 </div>
 
-<div id = "global">
+<div id = "menu">
+  <mat-list>
+    <mat-list-item *ngFor="let list of getLists()" (click)="updateList(list)" >{{list.name}} </mat-list-item>
+  </mat-list>
+</div>
+
+
   <div id = "gauche">
     <section class="lists">
-      <app-todo-list *ngFor="let list of getLists()" [list]="list" [clock]="list.clock"></app-todo-list>
+      <app-todo-list *ngIf="currentList !== undefined" [list]="currentList" [clock]="currentList ? currentList.clock : null"></app-todo-list>
     </section>
   </div>
-</div>

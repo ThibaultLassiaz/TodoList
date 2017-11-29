@@ -9,6 +9,7 @@ import {List} from "immutable";
 })
 export class ListsComponent implements OnInit {
   lists = List<TodoListJSON>();
+  currentList : TodoListWithItems;
 
   constructor(private todoListService: TodoListService) { }
 
@@ -25,5 +26,10 @@ export class ListsComponent implements OnInit {
       someOtherAttribute: "pourquoi pas un texte ?"
       // Add other data here...
     });
+  }
+
+  updateList(listToShow: TodoListWithItems) {
+    this.currentList = listToShow;
+    console.log(this.currentList);
   }
 }

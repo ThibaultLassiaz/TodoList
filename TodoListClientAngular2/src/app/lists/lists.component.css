@@ -28,9 +28,16 @@ section {
 #global {
   overflow:hidden;
 }
+
+#menu {
+  float: left;
+  width : 20%;
+  border-color : red;
+}
+
 #gauche {
-  float:left;
-  width: 80%;
+  margin-left: 20%;
+  width: 70%;
 }
 #droite {
   overflow:auto;
