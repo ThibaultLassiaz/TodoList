@@ -26,7 +26,8 @@
 </div>
 
 <div id = "menu">
-  <mat-list>
+  <h3>Mes listes</h3>
+  <mat-list id = "liste">
     <mat-list-item *ngFor="let list of getLists()" (click)="updateList(list)" >{{list.name}} </mat-list-item>
   </mat-list>
 </div>
