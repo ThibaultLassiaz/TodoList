@@ -26,7 +26,7 @@
         <button type="submit" mat-raised-button (click)="createItem(data.id, newItemLabel.value, newItemDesc.value, date.toString(), pined); newItemLabel.value=''; newItemDesc.value='';"><i class="material-icons">done</i></button>
       </p>
     </form>
-  <div mat-dialog-actions>
+  <div class= "btnDelete" mat-dialog-actions>
     <button class = "btnAdd" mat-raised-button (click)="onNoClick()" tabindex="-1"><i class="material-icons">clear</i></button>
   </div>
 </div>
