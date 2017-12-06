@@ -1,8 +1,27 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialog, MatDialogRef,MatSnackBar, MAT_DIALOG_DATA} from '@angular/material';
 import {ListID, ItemJSON,  TodoListService} from "../todo-list.service";
 import {dataForItem} from "../../data/protocol";
 import {isUndefined} from "util";
+
+
+/**
+ * @title Basic snack-bar
+ */
+@Component({
+  selector: 'window-confirmation',
+  templateUrl: 'window-confirmation.component.html',
+})
+export class SnackBarOverview {
+  constructor(public snackBar: MatSnackBar) {}
+
+  public openSnackBar(message: string, action: string):void {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+}
+
 
 @Component({
   selector: 'app-task-modal',

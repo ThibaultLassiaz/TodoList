@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>Créer une nouvelle tâche</h1>
 
 <div mat-dialog-content>
-  <h1>{{getErrorMessage()}}</h1>
+  <div class="alert">{{getErrorMessage()}}</div>
     <form>
       <mat-form-field>
         <input matInput placeholder="Entrez le nom de votre tache ..." #newItemLabel>
@@ -30,3 +30,4 @@
     <button class = "btnAdd" mat-raised-button (click)="onNoClick()" tabindex="-1"><i class="material-icons">clear</i></button>
   </div>
 </div>
+<window-confirmation></window-confirmation>
