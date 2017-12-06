@@ -1,6 +1,6 @@
 
 
-  <mat-expansion-panel class="root" [style.backgroundColor]="getColor()">
+  <mat-expansion-panel class="root" [expanded]="true" [style.backgroundColor]="getColor()">
     <mat-expansion-panel-header>
       <mat-panel-title>
         <i class="material-icons" style="margin-top: 35px;">list</i>
@@ -13,9 +13,9 @@
 
     <div class = "options">
       <!-- <input type="color" [ngModel]="getColor()" (ngModelChange)="setColor($event)" /> -->
-      <button class = "btnDel" (click)="setSortLabel()" mat-raised-button><i class="material-icons">replay</i> Trier A-Z</button>
-      <button class = "btnDel" (click)="setSortDate()" mat-raised-button><i class="material-icons">replay</i> Trier par date</button>
       <button class = "btnDel" (click)="delete()" mat-raised-button><i class="material-icons">delete</i> Supprimer cette liste</button>
+      <button class = "btnDel" (click)="setSortDate()" mat-raised-button><i class="material-icons">replay</i> Trier par date</button>
+      <button class = "btnDel" (click)="setSortLabel()" mat-raised-button><i class="material-icons">replay</i> Trier A-Z</button>
     </div>
   <!-- <form (ngSubmit)="createItem(newItemLabel.value, newItemDesc.value, date, pined); newItemLabel.value=''; newItemDesc.value='';">
     <label>Create a new item:</label>
@@ -37,7 +37,10 @@
     <button type="submit" mat-raised-button><i class="material-icons">send</i></button>
   </form>
  -->
+
+    <div class="sublist">
     <app-sub-list *ngFor="let subList of subLists" [items]="getSortedItemsTyped(subList.type)" [listId]="this.list.id" [typeList]="subList.type"></app-sub-list>
+    </div>
 
   <app-task-modal [listId]="this.list.id"></app-task-modal>
 

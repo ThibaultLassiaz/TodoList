@@ -35,6 +35,6 @@
 
   <div id = "gauche">
     <section class="lists">
-      <app-todo-list *ngIf="currentList !== undefined" [list]="currentList" [clock]="currentList ? currentList.clock : null"></app-todo-list>
+      <app-todo-list *ngIf="getCurrentList()" [list]="getCurrentList()" [clock]="getCurrentList().clock"></app-todo-list>
     </section>
   </div>

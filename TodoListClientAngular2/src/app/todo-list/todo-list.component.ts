@@ -14,6 +14,8 @@ export class TodoListComponent implements OnInit {
   @Input() list: TodoListWithItems;
   @Input() clock: number;
   TypeSort: TypeSort;
+  panelOpenState = false;
+
 
   functionSort: functionSortItem;
 

@@ -1,4 +1,4 @@
-<mat-list-item>
+<div>
   <mat-checkbox #isChecked type="checkbox" [ngModel]="item.checked" (ngModelChange)="check(isChecked.checked)"></mat-checkbox>
   <label [ngStyle]="setStyle()" *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">
     <span class = "title">{{item.label}}</span>
@@ -18,4 +18,4 @@
     <app-task-modal-modification [listId]="this.listId" [item] = "this.item" [itemId]="this.item.id"></app-task-modal-modification>
     <button mat-raised-button [ngStyle]="setStyleBtn()" (click)="delete()"><i class="material-icons">delete</i> Supprimer cette tâche</button>
   </div>
-</mat-list-item>
+</div>

@@ -1,3 +1,7 @@
 .items {
-  margin-top: 70px;
+  padding:16px;
+  width:240px;
+  overflow: hidden;
 }
+
+
