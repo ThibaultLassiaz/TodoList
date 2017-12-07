@@ -8,7 +8,7 @@
   </div>
 
   <div>
-    <div class="done"><mat-checkbox #isChecked type="checkbox" [ngModel]="item.checked" (ngModelChange)="check(isChecked.checked)"></mat-checkbox></div>
+    <div class="done"><input #isChecked type="checkbox" [ngModel]="item.checked"(ngModelChange)="check(isChecked.checked)" title= {{getTitle()}}/><i class="material-icons">{{getPicto()}}</i></div>
     <div class="edit"> <app-task-modal-modification [listId]="this.listId" [item] = "this.item" [itemId]="this.item.id"></app-task-modal-modification></div>
     <div class="delete"><button (click)="delete()"><i class="material-icons" title="Supprimer cette tâche">delete</i></button></div>
   </div>

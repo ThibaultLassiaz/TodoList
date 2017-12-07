@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ListID, ItemJSON, TodoListService} from "../todo-list.service";
+import {SubLisType} from "../../data/protocol";
 
 @Component({
   selector: 'app-todo-item',
@@ -19,6 +20,16 @@ export class TodoItemComponent implements OnInit, OnChanges {
   }
   ngOnChanges(changes: SimpleChanges) {
   }
+
+  getTitle()
+  {
+    return this.item.checked ? "Restaurer cette tache" : "Archiver cette tâche";
+  }
+
+  getPicto() {
+   return this.item.checked ? "clear" : "done";
+  }
+
 
   setStyle() {
     let styles = {
