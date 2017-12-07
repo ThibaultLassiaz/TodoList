@@ -4,6 +4,10 @@ p {
   width: 100%;
 }
 
+.alert {
+  color: #f44336; /* Red */
+}
+
 .mat-form-field {
   width: 100%;
 }
