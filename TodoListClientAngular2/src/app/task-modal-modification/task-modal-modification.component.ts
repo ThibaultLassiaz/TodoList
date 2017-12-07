@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar} from '@angular/material';
 import {ListID, ItemJSON, TodoListService} from "../todo-list.service";
 import {dataForItem} from "../../data/protocol";
 
@@ -53,11 +53,11 @@ export class TaskModalModificationComponent implements OnInit {
 })
 export class TaskModalModificationComponentForm {
 
-  @Input() date: Date;
+  @Input() date: Date = new Date();
   public pined:boolean = false;
 
   constructor(
-    public dialogRef: MatDialogRef<TaskModalModificationComponentForm>,
+    public dialogRef: MatDialogRef<TaskModalModificationComponentForm>, private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any, private todoListService: TodoListService) { }
 
 
@@ -79,5 +79,9 @@ export class TaskModalModificationComponentForm {
     };
     const id = this.todoListService.SERVER_UPDATE_ITEM_LABEL(ListId, ItemId, label);
     const idbis = this.todoListService.SERVER_UPDATE_ITEM_DATA(ListId, ItemId, itemEdit);
+
+    this.snackBar.open('Tâche modifiée', 'Fermer', {
+      duration: 2000,
+    });
   }
 }

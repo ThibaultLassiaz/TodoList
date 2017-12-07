@@ -6,7 +6,7 @@
       <input matInput [value]="data.item.label" placeholder="Entrez le nom de votre tache ..." #newItemLabel>
     </mat-form-field>
     <mat-form-field class="example-full-width">
-      <textarea matInput placeholder="Entrez la description de votre tache ..." #newItemDesc></textarea>
+      <textarea matInput [value]="data.item.data.description" placeholder="Entrez la description de votre tache ..." #newItemDesc></textarea>
     </mat-form-field>
     <mat-form-field>
       <input matInput [matDatepicker]="picker" placeholder="Choisissez une date..." [(ngModel)]="date" name ="maDate" ngDefaultControl>

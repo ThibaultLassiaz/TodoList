@@ -50,7 +50,7 @@ import {
   MatStepperModule,
 } from '@angular/material';
 
-import { TaskModalComponent, TaskModalComponentForm, SnackBarOverview } from './task-modal/task-modal.component';
+import { TaskModalComponent, TaskModalComponentForm } from './task-modal/task-modal.component';
 import { TaskModalModificationComponent, TaskModalModificationComponentForm } from './task-modal-modification/task-modal-modification.component';
 import { SubListComponent } from './sub-list/sub-list.component';
 
@@ -112,8 +112,7 @@ export class PlunkerMaterialModule {}
     TaskModalComponentForm,
     TaskModalModificationComponent,
     TaskModalModificationComponentForm,
-    SubListComponent,
-    SnackBarOverview
+    SubListComponent
   ],
   entryComponents: [
     TaskModalComponent, TaskModalComponentForm, TaskModalModificationComponent, TaskModalModificationComponentForm

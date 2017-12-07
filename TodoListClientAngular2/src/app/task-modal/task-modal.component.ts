@@ -5,22 +5,6 @@ import {dataForItem} from "../../data/protocol";
 import {isUndefined} from "util";
 
 
-/**
- * @title Basic snack-bar
- */
-@Component({
-  selector: 'window-confirmation',
-  templateUrl: 'window-confirmation.component.html',
-})
-export class SnackBarOverview {
-  constructor(public snackBar: MatSnackBar) {}
-
-  public openSnackBar(message: string, action: string):void {
-    this.snackBar.open(message, action, {
-      duration: 2000,
-    });
-  }
-}
 
 
 @Component({
@@ -40,13 +24,13 @@ export class TaskModalComponent implements OnInit {
         id : this.listId
       }
     });
-
     console.log(this.listId);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
     });
   }
+
 
   ngOnInit() {
   }
@@ -65,11 +49,8 @@ export class TaskModalComponentForm {
   public errorMessage = "";
 
   constructor(
-    public dialogRef: MatDialogRef<TaskModalComponentForm>,
+    public dialogRef: MatDialogRef<TaskModalComponentForm>,private snackBar:MatSnackBar ,
     @Inject(MAT_DIALOG_DATA) public data: any, private todoListService: TodoListService) { }
-
-
-
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -99,7 +80,11 @@ export class TaskModalComponentForm {
       };
 
       const id = this.todoListService.SERVER_CREATE_ITEM(ListId, label, false, itemEdit);
+
       this.dialogRef.close();
+      this.snackBar.open('Tâche ajoutée', 'Fermer', {
+        duration: 2000,
+      });
 
     }
 

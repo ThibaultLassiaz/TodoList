@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ListID, ItemJSON, TodoListService} from "../todo-list.service";
+import {MatSnackBar} from '@angular/material';
 import {SubLisType} from "../../data/protocol";
 
 @Component({
@@ -14,7 +15,7 @@ export class TodoItemComponent implements OnInit, OnChanges {
   @Input() clock: number;
   private editingLabel = false;
 
-  constructor(private todoListService: TodoListService) { }
+  constructor(private todoListService: TodoListService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -85,5 +86,8 @@ export class TodoItemComponent implements OnInit, OnChanges {
 
   delete() {
     this.todoListService.SERVER_DELETE_ITEM(this.listId, this.item.id);
+    this.snackBar.open('Tâche supprimée', 'Fermer', {
+      duration: 2000,
+    });
   }
 }
