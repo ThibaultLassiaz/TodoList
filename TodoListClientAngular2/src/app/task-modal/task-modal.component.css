@@ -23,5 +23,6 @@ h1, .btnAdd {
 }
 
 .btnDelete {
+  margin-top: 4px;
   float: left;
 }

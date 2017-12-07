@@ -1,4 +1,4 @@
-<div>
+<div class="item">
   <mat-checkbox #isChecked type="checkbox" [ngModel]="item.checked" (ngModelChange)="check(isChecked.checked)"></mat-checkbox>
   <label [ngStyle]="setStyle()" *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">
     <span class = "title">{{item.label}}</span>

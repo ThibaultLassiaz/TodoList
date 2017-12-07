@@ -39,6 +39,11 @@ section {
   margin: 1em !important;
 }
 
+.mat-expansion-panel-body {
+  overflow : initial !important;
+}
+
+
 mat-expansion-panel-header {
   border-bottom: 1px solid grey;
 }
