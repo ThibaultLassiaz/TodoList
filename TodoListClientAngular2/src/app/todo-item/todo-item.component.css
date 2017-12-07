@@ -1,3 +1,11 @@
+.done, .edit, .delete {
+  margin-top: 20px;
+  text-align: center;
+  display: inline-block;
+  width: 32%;
+}
+
+
 section.toBeUpdated {
   background-color: orangered;
 }
@@ -6,8 +14,29 @@ form {
   display: inline;
 }
 
+.itembody {
+  padding: 16px 16px 0px 16px;
+}
+
+.title {
+  border-bottom: 1px solid lightslategray;
+  width: 70%;
+}
+
+.desc {
+  font-weight: normal;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
 mat-checkbox {
   padding: 1em;
+}
+
+.pin {
+  width: 20%;
+  float: right;
+  background-color: #DCDCDC;
 }
 
 .title {
@@ -23,22 +52,27 @@ label {
 }
 
 .item {
-  padding:16px;
   width:240px;
   overflow: hidden;
   display: inline-block;
   margin: 5px;
   background-color: #DCDCDC;
   box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
 }
 
 .divbtn {
   float: right; display: inline-block; min-width: 45%
 }
 
+
+.pin , .title {
+  display: inline-block;
+}
 button {
+  background-color: #DCDCDC;
+  border: none;
  /* width: 190.5px;*/
-  width: 32%;
   overflow: hidden;
 }
 

@@ -21,7 +21,8 @@ h1, .btnAdd {
 }
 
 .btnModif {
-  width: 32%;
+  background-color: #DCDCDC;
+  border: none;
   overflow: hidden;
   /*width: 190.5px;*/
 }

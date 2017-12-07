@@ -1,4 +1,19 @@
 <div class="item">
+
+  <div class="itembody">
+    <div class = "title">{{item.label}}</div>
+    <div class="pin"><button (click)="togglePined()" *ngIf="!item.checked" title = {{textPined()}}><i class="material-icons">colorize</i></button></div>
+    <div class="desc">{{item.data.description}}</div>
+    <div class="date">{{item.data.date | date:'dd MMM, yyyy'}}</div>
+  </div>
+
+  <div>
+    <div class="done"><mat-checkbox #isChecked type="checkbox" [ngModel]="item.checked" (ngModelChange)="check(isChecked.checked)"></mat-checkbox></div>
+    <div class="edit"> <app-task-modal-modification [listId]="this.listId" [item] = "this.item" [itemId]="this.item.id"></app-task-modal-modification></div>
+    <div class="delete"><button (click)="delete()"><i class="material-icons" title="Supprimer cette tâche">delete</i></button></div>
+  </div>
+
+  <!--
   <mat-checkbox #isChecked type="checkbox" [ngModel]="item.checked" (ngModelChange)="check(isChecked.checked)"></mat-checkbox>
   <label [ngStyle]="setStyle()" *ngIf="!isEditingLabel()" (dblclick)="editLabel(true)">
     <span class = "title">{{item.label}}</span>
@@ -18,4 +33,7 @@
     <app-task-modal-modification [listId]="this.listId" [item] = "this.item" [itemId]="this.item.id"></app-task-modal-modification>
     <button mat-raised-button [ngStyle]="setStyleBtn()" (click)="delete()"><i class="material-icons">delete</i> Supprimer cette tâche</button>
   </div>
+
+  -->
+
 </div>
