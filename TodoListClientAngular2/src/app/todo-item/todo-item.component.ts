@@ -57,6 +57,17 @@ export class TodoItemComponent implements OnInit, OnChanges {
   togglePined() {
     this.item.data.pined = !this.item.data.pined;
    this.todoListService.SERVER_UPDATE_ITEM_DATA(this.listId, this.item.id, this.item.data);
+   if(this.item.data.pined){
+     this.snackBar.open('Tâche épinglée', 'Fermer', {
+       duration: 2000,
+     });
+   }
+   else{
+     this.snackBar.open('Tâche désépinglée', 'Fermer', {
+       duration: 2000,
+     });
+   }
+
   }
 
   textPined(){
@@ -82,6 +93,18 @@ export class TodoItemComponent implements OnInit, OnChanges {
 
   check(checked: boolean) {
     this.todoListService.SERVER_UPDATE_ITEM_CHECK(this.listId, this.item.id, checked);
+    console.log(checked);
+    if(checked){
+      this.snackBar.open('Tâche archivée', 'Fermer', {
+        duration: 2000,
+      });
+    }
+    else{
+      this.snackBar.open('Tâche restaurée', 'Fermer', {
+        duration: 2000,
+      });
+    }
+
   }
 
   delete() {

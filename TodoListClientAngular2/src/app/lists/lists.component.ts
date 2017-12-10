@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TodoListWithItems, TodoListJSON, TodoListService, ItemJSON} from "../todo-list.service";
 import {List} from "immutable";
+import {MatSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-lists',
@@ -11,7 +12,7 @@ export class ListsComponent implements OnInit {
   // lists = List<TodoListJSON>();
   currentList: TodoListWithItems;
 
-  constructor(private todoListService: TodoListService) { }
+  constructor(private todoListService: TodoListService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -25,6 +26,9 @@ export class ListsComponent implements OnInit {
       color: "#FFFFFF",
       someOtherAttribute: "pourquoi pas un texte ?"
       // Add other data here...
+    });
+    this.snackBar.open('Liste créée', 'Fermer', {
+      duration: 2000,
     });
   }
 
