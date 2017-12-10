@@ -55,6 +55,7 @@ export class TaskModalModificationComponentForm {
 
   @Input() date: Date = new Date();
   public pined:boolean = false;
+  public errorMessage = "";
 
   constructor(
     public dialogRef: MatDialogRef<TaskModalModificationComponentForm>, private snackBar: MatSnackBar,
@@ -66,22 +67,34 @@ export class TaskModalModificationComponentForm {
     this.dialogRef.close();
   }
 
+  public getErrorMessage() : string{
+    return this.errorMessage;
+  }
+
   public onPinedCbChanged(value:boolean){
     this.pined = value;
   }
 
   updateItem(ListId : ListID, ItemId : string, label: string, description : string, date : string, checkbox : boolean) {
-    console.log(checkbox);
-    const itemEdit: dataForItem = {
-      description : description,
-      date : date,
-      pined : checkbox,
-    };
-    const id = this.todoListService.SERVER_UPDATE_ITEM_LABEL(ListId, ItemId, label);
-    const idbis = this.todoListService.SERVER_UPDATE_ITEM_DATA(ListId, ItemId, itemEdit);
 
-    this.snackBar.open('Tâche modifiée', 'Fermer', {
-      duration: 2000,
-    });
+    if(label === ""){
+      this.errorMessage = "le nom d'une tâche est obligatoire";
+    }
+    else{
+      console.log(checkbox);
+      const itemEdit: dataForItem = {
+        description : description,
+        date : date,
+        pined : checkbox,
+      };
+      const id = this.todoListService.SERVER_UPDATE_ITEM_LABEL(ListId, ItemId, label);
+      const idbis = this.todoListService.SERVER_UPDATE_ITEM_DATA(ListId, ItemId, itemEdit);
+
+      this.dialogRef.close();
+      this.snackBar.open('Tâche modifiée', 'Fermer', {
+        duration: 2000,
+      });
+    }
+
   }
 }
